@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "../../styles/Ninjas.module.css";
 export const getStaticProps = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -9,14 +10,14 @@ export const getStaticProps = async () => {
 const Alllist = ({ lists }) => {
   return (
     <div>
-      <h1 className="text-5xl">All Ninjas</h1>
+      <h1 className="text-5xl m-3 p-3">All Ninjas</h1>
       {lists.map((ele) => {
         return (
-          <div key={ele.id}>
-            <a className={styles.single}>
+          <Link href={"/lists/" + ele.id} key={ele.id}>
+            <div className={styles.single}>
               <h3>{ele.name}</h3>
-            </a>
-          </div>
+            </div>
+          </Link>
         );
       })}
     </div>
